@@ -1,0 +1,18 @@
+name: CI
+
+on:
+  push:
+    branches: [ _ ]
+  pull_request:
+    branches: [ _ ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install graalvm/labs-openjdk-17
+        run: sudo mkdir /opt/jvm && curl --proto '=https' --tlsv1.2 -sSfL https://github.com/graalvm/labs-openjdk-17/releases/download/jvmci-21.3-b02/labsjdk-ce-17+35-jvmci-21.3-b02-linux-amd64.tar.gz | sudo tar --strip-components=1 -xzvC /opt/jvm
