@@ -26,12 +26,12 @@ jobs:
           popd
       - name: ls -R
         run: ls -R
-      - name: find -name '*tar*'
-        run: find -name '*tar*'
+      - name: find -name '*.tar*'
+        run: find -name '*.tar*'
       - name: find -name '*zip*'
         run: find -name '*zip*'
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: graal
-          path: graal
+          name: GRAALVM_CE_JAVA17
+          path: graal/sdk/mxbuild/linux-amd64/GRAALVM_CE_JAVA17
