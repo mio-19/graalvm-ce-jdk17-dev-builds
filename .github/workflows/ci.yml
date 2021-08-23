@@ -32,7 +32,7 @@ jobs:
         run: find -name '*zip*'
       - name: Make archives
         run: |
-          tar -czvf GRAALVM_CE_JAVA17.tgz -C graal/sdk/mxbuild/linux-amd64/GRAALVM_CE_JAVA17
+          tar -czvf GRAALVM_CE_JAVA17.tgz -C graal/sdk/mxbuild/linux-amd64/GRAALVM_CE_JAVA17 .
       - name: Release
         uses: softprops/action-gh-release@v1
         if: github.event_name != 'pull_request'
