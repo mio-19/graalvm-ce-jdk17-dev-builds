@@ -21,6 +21,11 @@ jobs:
           git clone --depth 1 https://github.com/graalvm/mx
           export PATH="$PWD/mx:$PATH"
           git clone --depth 1 https://github.com/graalvm/graal.git
-          cd graal/vm
+          pushd graal/vm
           mx --env ce build
-          
+          popd
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: latest_graalvm
+          path: graal/vm/latest_graalvm
