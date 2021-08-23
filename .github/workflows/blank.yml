@@ -30,6 +30,14 @@ jobs:
         run: find -name '*.tar*'
       - name: find -name '*zip*'
         run: find -name '*zip*'
+      - name: Make archives
+        run: |
+          tar -czvf GRAALVM_CE_JAVA17.tgz -C graal/sdk/mxbuild/linux-amd64/GRAALVM_CE_JAVA17
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: !startsWith(github.ref, 'refs/pull/')
+        with:
+          files: GRAALVM_CE_JAVA17.tgz
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
