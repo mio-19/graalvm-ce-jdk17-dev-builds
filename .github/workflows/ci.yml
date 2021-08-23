@@ -35,7 +35,7 @@ jobs:
           tar -czvf GRAALVM_CE_JAVA17.tgz -C graal/sdk/mxbuild/linux-amd64/GRAALVM_CE_JAVA17
       - name: Release
         uses: softprops/action-gh-release@v1
-        if: !startsWith(github.ref, 'refs/pull/')
+        if: github.event_name != 'pull_request'
         with:
           files: GRAALVM_CE_JAVA17.tgz
       - name: Archive production artifacts
