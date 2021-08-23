@@ -34,15 +34,22 @@ jobs:
         run: |
           gzip graal/sdk/mxbuild/linux-amd64/dists/graalvm-ce-java17.tar
           tar -czvf GRAALVM_CE_JAVA17.tgz -C graal/sdk/mxbuild/linux-amd64/GRAALVM_CE_JAVA17 .
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
+      - uses: "marvinpinto/action-automatic-releases@latest"
         with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "Development Build"
           files: |
-            GRAALVM_CE_JAVA17.tgz
             graal/sdk/mxbuild/linux-amd64/dists/graalvm-ce-java17.tar.gz
-      - name: Archive production artifacts
+            GRAALVM_CE_JAVA17.tgz
+      - name: Archive production artifacts GRAALVM_CE_JAVA17
         uses: actions/upload-artifact@v2
         with:
           name: GRAALVM_CE_JAVA17
           path: graal/sdk/mxbuild/linux-amd64/GRAALVM_CE_JAVA17
+      - name: Archive production artifacts graalvm-ce-java17.tar.gz
+        uses: actions/upload-artifact@v2
+        with:
+          name: graalvm-ce-java17.tar.gz
+          path: graal/sdk/mxbuild/linux-amd64/dists/graalvm-ce-java17.tar.gz
