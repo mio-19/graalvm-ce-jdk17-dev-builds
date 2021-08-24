@@ -30,6 +30,8 @@ jobs:
         run: find -name '*.tar*'
       - name: find -name '*zip*'
         run: find -name '*zip*'
+      - name: find -name 'native-image*jar*'
+        run: find -name 'native-image*jar*'
       - name: Make archives
         run: |
           gzip graal/sdk/mxbuild/linux-amd64/dists/graalvm-ce-java17.tar
